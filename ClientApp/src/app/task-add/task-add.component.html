@@ -1,0 +1,43 @@
+<div class="d-flex jusrify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Task Add</h1>
+</div>
+<!--<p>Aplicacion para agregar Task</p>
+<div class="form-group">
+    <label >Id:
+        <input [(ngModel)]="task.id" class="form-control" placeholder="digite el Id" type="number" />
+    </label>
+</div> -->
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label>Titulo:</label>
+        <input [(ngModel)]="task.title" formControlName="title" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.title.errors }" placeholder="digite titulo" type="text" />
+        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+            <div *ngIf="f.title.errors.required">Title is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Descripcion:</label>
+        <input [(ngModel)]="task.description" formControlName="description" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }" placeholder="digite descripcion"
+            type="text" />
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Prioritario:
+            <input type="checkbox" class="form-control" [(ngModel)]="task.priority">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" >Agregar</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+    </div>
+
+</form>
